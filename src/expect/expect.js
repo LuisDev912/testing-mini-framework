@@ -1,4 +1,4 @@
-import { toBe, toEqual } from './matchers.js';
+import { toBe, toEqual, toThrow } from './matchers.js';
 
 export function expect(received) {
     return {
@@ -8,6 +8,10 @@ export function expect(received) {
 
         toEqual(expected) {
             toEqual(received, expected);
+        },
+
+        toThrow() {
+            toThrow(received);
         }
     };
 }

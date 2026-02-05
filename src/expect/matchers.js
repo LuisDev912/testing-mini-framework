@@ -18,3 +18,18 @@ export function toEqual(currentValue, expectedValue) {
     };
 };
 // example: expect({ name: 'John Doe' }).toBe({ name: 'John Doe' })
+
+export function toThrow(fn) {
+    let threw = false;
+
+    try {
+        fn();
+    } catch{
+        threw = true;
+    }
+
+    if (!threw) {
+        throw new Error('Expected function to throw an error')
+    };
+};
+// example: expect(() => doSomething()).toThrow();

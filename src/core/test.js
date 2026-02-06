@@ -1,4 +1,4 @@
-let tests = []
+let tests = [];
 
 export function test(description, fn) {
     tests.push({ description, fn });
@@ -7,4 +7,4 @@ export function test(description, fn) {
 
 export function getTests() {
     return tests;
-}
+};

@@ -3,7 +3,7 @@ import { test } from '../core/test.js';
 import { runner } from '../core/runner.js';
 
 // --- toBe() test ---
-const firstTest = test('The result of 2 + 2 must be 4', () => {
+test('The result of 2 + 2 must be 4', () => {
     expect(2 + 2).toBe(4);
     // note: "toBe()" is not imported here as it is a part of "expect()" function
 });
@@ -16,10 +16,10 @@ const UserConfig = {
 
 const User = {
     role: 'user',
-    id: 1
+    id: 2
 };
 
-const secondTest = test('must return User information with user role', () => {
+test('must return User information with user role', () => {
     expect(User).toEqual(UserConfig);
 });
 
@@ -32,9 +32,8 @@ function sumTwoNumbers(a, b) {
     return a + b;
 }
 
-const thirdTest = test('sumTwoNumbers must return true when both parameters are numbers', () => {
+test('sumTwoNumbers must return true when both parameters are numbers', () => {
     expect(() => sumTwoNumbers(2 + '2')).toThrow();
 })
 
 runner();
-// although runner() function is called without any test given, it runs each test because when a test is created it's stored in an array that runner() knows

@@ -8,9 +8,9 @@ export async function runner() {
     // Use a for...of loop instead of Promise.all() as it runs each test in a parallel way without knowing which test goes first 
         try {
             await test.fn();
-            console.log(`✔️ ${test.description}`);
+            console.log(`${'✔️'.padEnd(3)} ${test.description}`);
         } catch (e){
-            console.log(`X ${test.description}`);
+            console.log(`${'❌'.padEnd(3)} ${test.description}`);
             console.error(e.message);
         }
     };

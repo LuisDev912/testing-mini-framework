@@ -13,7 +13,7 @@ export function toEqual(currentValue, expectedValue) {
 
     if (currentValueJson !== expectedValueJson) {
         throw new Error(
-            `expected ${expectedValue} to be ${currentValue}`
+            `expected ${expectedValueJson} to be ${currentValueJson}`
         )
     };
 };

@@ -16,7 +16,7 @@ const UserConfig = {
 
 const User = {
     role: 'user',
-    id: 2
+    id: 1
 };
 
 const secondTest = test('must return User information with user role', () => {

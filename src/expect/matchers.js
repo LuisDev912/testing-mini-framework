@@ -17,9 +17,11 @@ export function toEqual(currentValue, expectedValue) {
         )
     };
 };
-// example: expect({ name: 'John Doe' }).toBe({ name: 'John Doe' })
+// example: expect({ name: 'John Doe' }).toEqual({ name: 'John Doe' })
 
 export function toThrow(fn) {
+    if (typeof fn !== 'function') throw new Error('toThrow expects a function');
+
     let threw = false;
 
     try {

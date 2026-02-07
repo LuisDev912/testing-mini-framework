@@ -14,4 +14,4 @@ export function expect(received) {
             toThrow(received);
         }
     };
-}
+};

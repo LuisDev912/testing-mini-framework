@@ -33,7 +33,7 @@ function sumTwoNumbers(a, b) {
 };
 
 test('sumTwoNumbers must return true when both parameters are numbers', () => {
-    expect(() => sumTwoNumbers(2, 2)).toThrow();
+    expect(() => sumTwoNumbers(2, '2')).toThrow();
 });
 
 runner();

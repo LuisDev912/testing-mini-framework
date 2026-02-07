@@ -10,9 +10,8 @@ export async function runner() {
             await test.fn();
             console.log(`${'✔️'.padEnd(3)} ${test.description}`);
         } catch (e){
-            console.log(`${'❌'.padEnd(3)} ${test.description}`);
+            console.log(`❌ ${test.description}`);
             console.error(e.message);
-        }
+        };
     };
 };
-

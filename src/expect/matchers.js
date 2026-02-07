@@ -28,7 +28,7 @@ export function toThrow(fn) {
         fn();
     } catch{
         threw = true;
-    }
+    };
 
     if (!threw) {
         throw new Error('Expected function to throw an error')

@@ -2,7 +2,7 @@
 
 A small experimental testing framework built from scratch in Node.js, designed to understand how testing tools work internally.
 
-This project is **not intended to replace existing frameworks** like Jest, Vitest or node:test.  
+This project is **not intended to replace existing frameworks** like Jest, `Vitest` or `node:test`.  
 Its purpose is educational: to explore test runners, assertions, async handling and reporting at a low level.
 
 ---
@@ -103,10 +103,10 @@ It is not part of the framework, but helps compare API design and behaviour.
 
 ## Future Improvements
 
-- async test support (if not already implemented)
-- grouped tests (describe blocks)
-- better console reporting
-- simple CLI runner
+[] async test support
+[x] grouped tests
+[x] better console reporting
+[x] simple CLI runner
 
 ---
 

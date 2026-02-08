@@ -32,7 +32,7 @@ function sumTwoNumbers(a, b) {
     return a + b;
 };
 
-test('sumTwoNumbers must return true when both parameters are numbers', () => {
+test('sumTwoNumbers must throw an error if a parameter is not valid', () => {
     expect(() => sumTwoNumbers(2, '2')).toThrow();
 });
 

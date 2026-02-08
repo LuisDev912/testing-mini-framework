@@ -19,10 +19,12 @@ export async function runner() {
             failedTests++;
         };
     };
-    console.group('Tests information');
-    console.info(`tests: ${tests.length}`);
-    console.info(`pass: ${passTests}`);
-    console.info(`fail: ${failedTests}`)
+
+    console.group('--- Tests Information ---');
+
+    console.info(`\u0069 tests: ${tests.length}`);
+    console.info(`\u0069 pass: ${passTests}`);
+    console.info(`\u0069 fail: ${failedTests}`)
     console.timeEnd('testsDuration');
     console.groupEnd();
 };

@@ -8,6 +8,7 @@ export async function runner() {
 
     console.time('testsDuration')
     for (const test of tests) {
+        console.time('test-duration');
         // Use a for...of loop instead of Promise.all() as it runs each test in a parallel way without knowing which test goes first 
         try {
             await test.fn();
@@ -18,10 +19,10 @@ export async function runner() {
             console.error(e.message);
             failedTests++;
         };
+        console.timeEnd('test-duration');
     };
 
-    console.group('--- Tests Information ---');
-
+    console.group('\n --- Tests Information ---');
     console.info(`\u0069 tests: ${tests.length}`);
     console.info(`\u0069 pass: ${passTests}`);
     console.info(`\u0069 fail: ${failedTests}`)

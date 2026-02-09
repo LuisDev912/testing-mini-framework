@@ -33,7 +33,7 @@ function sumTwoNumbers(a, b) {
 };
 
 test('sumTwoNumbers must throw an error if a parameter is not valid', () => {
-    expect(() => sumTwoNumbers(2, 2)).toThrow();
+    expect(() => sumTwoNumbers(2, '2')).toThrow();
 });
 
 runner();

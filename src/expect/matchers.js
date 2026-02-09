@@ -19,13 +19,13 @@ export function toEqual(currentValue, expectedValue) {
 };
 // example: expect({ name: 'John Doe' }).toEqual({ name: 'John Doe' })
 
-export async function toThrow(fn) {
+export function toThrow(fn) {
     if (typeof fn !== 'function') throw new Error('toThrow expects a function');
 
     let threw = false;
 
     try {
-        await fn();
+        fn();
     } catch{
         threw = true;
     };
@@ -35,3 +35,16 @@ export async function toThrow(fn) {
     };
 };
 // example: expect(() => doSomething()).toThrow();
+
+export async function toReject(fn) {
+    if (typeof fn !== 'function') throw new TypeError('toThrow expects a function');
+
+    try {
+        await fn();
+    } catch {
+        return;
+    };
+
+    throw new Error('Expected function to throw an error')
+}
+// example: await expect(async () => doSomething()).toReject();

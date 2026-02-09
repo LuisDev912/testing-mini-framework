@@ -35,5 +35,18 @@ function sumTwoNumbers(a, b) {
 test('sumTwoNumbers must throw an error if a parameter is not valid', () => {
     expect(() => sumTwoNumbers(2, '2')).toThrow();
 });
+// --- toReject() test ---
+
+async function asyncSum(a, b) {
+    if ((typeof a !== 'number') || (typeof b !== 'number')) {
+        throw new TypeError('Not valid numbers.');
+    }
+
+    return a + b;
+};
+
+test('asyncSum must throw an error if a parameter is not valid', () => {
+    expect(() => asyncSum(2, '2')).toReject();
+});
 
 runner();

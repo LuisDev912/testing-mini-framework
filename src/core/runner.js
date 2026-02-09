@@ -12,10 +12,10 @@ export async function runner() {
         // Use a for...of loop instead of Promise.all() as it runs each test in a parallel way without knowing which test goes first 
         try {
             await test.fn();
-            console.log(`${'✔️'.padEnd(3)} ${test.description}`);
+            console.log(`\u2714 ${test.description}`);
             passTests++;
         } catch (e) {
-            console.log(`❌ ${test.description}`);
+            console.log(`\u0058 ${test.description}`);
             console.error(e.message);
             failedTests++;
         };
@@ -28,4 +28,5 @@ export async function runner() {
     console.info(`\u0069 fail: ${failedTests}`)
     console.timeEnd('testsDuration');
     console.groupEnd();
+    console.log('\n')
 };

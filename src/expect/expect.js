@@ -3,19 +3,35 @@ import { toBe, toEqual, toThrow, toReject } from './matchers.js';
 export function expect(received) {
     return {
         toBe(expected) {
-            toBe(received, expected);
+            const pass = toBe(received, expected);
+
+            if (!pass) {
+                throw new Error(`Expected ${received} to be ${expected}`);
+            }
         },
 
         toEqual(expected) {
-            toEqual(received, expected);
+            const pass = toEqual(received, expected);
+
+            if (!pass) {
+                throw new Error(`Expected ${received} to be ${expected}`);
+            }
         },
 
         toThrow() {
-            toThrow(received);
+            const pass = toThrow(received);
+
+            if (!pass) {
+                throw new Error(`Expected function to throw`);
+            }
         },
 
         async toReject() {
-            toReject(received)
+            const pass = toReject(received);
+
+            if (!pass) {
+                throw new Error(`Expected function to throw`);
+            }
         }
     };
 };

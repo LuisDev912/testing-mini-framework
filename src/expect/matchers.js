@@ -1,50 +1,29 @@
 export function toBe(currentValue, expectedValue) {
-    if (currentValue !== expectedValue) {
-        throw new Error(
-            `expected ${expectedValue} to be ${currentValue}`
-        );
-    };
+    return currentValue === expectedValue;
 };
 // example: expect(2 + 2).toBe(4)
 
 export function toEqual(currentValue, expectedValue) {
-    const currentValueJson = JSON.stringify(currentValue);
-    const expectedValueJson = JSON.stringify(expectedValue);
-
-    if (currentValueJson !== expectedValueJson) {
-        throw new Error(
-            `expected ${expectedValueJson} to be ${currentValueJson}`
-        )
-    };
+    return JSON.stringify(currentValue) === JSON.stringify(expectedValue);
 };
 // example: expect({ name: 'John Doe' }).toEqual({ name: 'John Doe' })
 
 export function toThrow(fn) {
-    if (typeof fn !== 'function') throw new Error('toThrow expects a function');
-
-    let threw = false;
-
     try {
         fn();
-    } catch{
-        threw = true;
-    };
-
-    if (!threw) {
-        throw new Error('Expected function to throw an error')
+        return false;
+    } catch {
+        return true
     };
 };
 // example: expect(() => doSomething()).toThrow();
 
 export async function toReject(fn) {
-    if (typeof fn !== 'function') throw new TypeError('toThrow expects a function');
-
     try {
         await fn();
+        return false;
     } catch {
-        return;
+        return true;
     };
-
-    throw new Error('Expected function to throw an error')
 }
 // example: await expect(async () => doSomething()).toReject();

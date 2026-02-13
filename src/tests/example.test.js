@@ -49,4 +49,15 @@ test('asyncSum must throw an error if a parameter is not valid', () => {
     expect(() => asyncSum(2, '2')).toReject();
 });
 
+// --- .not() tests ---
+
+test('not.toBe works', () => {
+    expect(2 + 2).not.toBe(5);
+});
+
+test('not.toThrow works', () => {
+    expect(() => sumTwoNumbers(2, 2)).not.toThrow();
+});
+
+
 runner();

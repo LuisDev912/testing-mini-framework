@@ -103,7 +103,7 @@ It is not part of the framework, but helps compare API design and behaviour.
 
 ## Future Improvements
 
-[] async test support
+[X] async test support
 [x] grouped tests
 [x] better console reporting
 [x] simple CLI runner

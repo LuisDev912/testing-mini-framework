@@ -1,5 +1,5 @@
 import { expect } from '../expect/expect.js';
-import { test } from '../core/test.js';
+import { test, describe } from '../core/test.js';
 import { runner } from '../core/runner.js';
 
 // --- toBe() test ---
@@ -50,7 +50,6 @@ test('asyncSum must throw an error if a parameter is not valid', () => {
 });
 
 // --- .not() tests ---
-
 test('not.toBe works', () => {
     expect(2 + 2).not.toBe(5);
 });
@@ -59,5 +58,15 @@ test('not.toThrow works', () => {
     expect(() => sumTwoNumbers(2, 2)).not.toThrow();
 });
 
+// --- describe() tests ---
+describe('sum', () => {
+    test('The result of 2 + 2 must be 4', () => {
+        expect(2 + 1).toBe(3);
+    });
+
+    test('The result of 2 + 2 must be 4', () => {
+        expect(2 + 3).toBe(5);
+    });
+});
 
 runner();

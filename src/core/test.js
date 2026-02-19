@@ -5,6 +5,11 @@ let rootTests = {
 };
 
 export function test(description, fn) {
+    rootTests.tests.push({ description, fn });
+    // Writing "() => fn" will not work here as the fn parameter is already a function
+};
+
+export function describe(description, fn) {
     rootTests.suites.push({ description, fn });
     // Writing "() => fn" will not work here as the fn parameter is already a function
 };

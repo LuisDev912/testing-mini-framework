@@ -1,15 +1,15 @@
-import { getTests } from "./test.js";
+import { getRootTests } from "./test.js";
 
 // the runner function must run each of the tests' function using a try/catch statement
 export async function runner() {
-    const tests = getTests();
+    const tests = getRootTests();
     let passTests = 0;
     let failedTests = 0;
 
     console.time('testsDuration')
-    for (const test of tests) {
+    for (const test in tests) { // currently, it only returns "test.fn is not a funcion" because it doesn't detect any function
         console.time('test-duration');
-        // Use a for...of loop instead of Promise.all() as it runs each test in a parallel way without knowing which test goes first 
+        // Use a for...in loop instead of Promise.all() as it runs each test in a parallel way without knowing which test goes first 
         try {
             await test.fn();
             console.log(`\u2714 ${test.description}`);

@@ -1,5 +1,5 @@
 // --- imports ---
-import test from 'node:test';
+import test, { describe } from 'node:test';
 import assert from 'node:assert';
 
 // --- code ---
@@ -47,3 +47,25 @@ test('Must return current configuration', () => {
         { mode: 'production', debug: false }
     );
 });
+
+// --- tests with describe()
+
+describe('test sumTwoNumbers parameters validation', () => {
+    test('sumTwoNumbers must return true when both parameters are numbers', () => {
+        assert.ok(sumTwoNumbers(2, 2));
+    });
+
+    test('sumTwoNumbers must return the sum of 2 + 2', () => {
+        assert.strictEqual(sumTwoNumbers(2, 2), 4);
+    });
+
+    test('sumTwoNumbers must return a type error when a non-integer value is given', () => {
+        assert.throws(
+            () => sumTwoNumbers(4, '6'),
+            {
+                name: 'TypeError',
+                message: 'Not valid numbers.'
+            }
+        );
+    });
+})

@@ -60,11 +60,11 @@ test('not.toThrow works', () => {
 
 // --- describe() tests ---
 describe('sum', () => {
-    test('The result of 2 + 2 must be 4', () => {
+    test('The result of 2 + 1 must be 3', () => {
         expect(2 + 1).toBe(3);
     });
 
-    test('The result of 2 + 2 must be 4', () => {
+    test('The result of 2 + 4 must be 5', () => {
         expect(2 + 3).toBe(5);
     });
 });

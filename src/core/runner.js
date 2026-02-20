@@ -22,20 +22,33 @@ export async function runner() {
         console.timeEnd('test-duration');
     };
 
-    for (const suite of allTests.suites) {
-        console.time('suite-duration'); 
-        console.group(`\n \u2192 ${suite.description}`)
-        try {
-            await suite.fn();
-            console.log(`\u2714 ${suite.description}`);
-            passTests++;
-        } catch (e) {
-            console.log(`\u0058 ${suite.description}`);
-            console.error(e.message);
-            failedTests++;
-        };
-        console.timeEnd('suite-duration');
-    };
+    async function runSuite(suite) {
+        if (suite.description !== 'root') {
+            console.group(`\n→ ${suite.description}`);
+        }
+
+        for (const test of suite.tests) {
+            try {
+                await test.fn();
+                console.log(`✔ ${test.description}`);
+                passTests++;
+            } catch (e) {
+                console.log(`✖ ${test.description}`);
+                console.error(e.message);
+                failedTests++;
+            }
+        }
+
+        for (const childSuite of suite.suites) {
+            await runSuite(childSuite);
+        }
+
+        if (suite.description !== 'root') {
+            console.groupEnd();
+        }
+    }
+
+    await runSuite(allTests);
 
     console.group('\n --- Tests Information ---');
     console.info(`\u0069 tests: ${allTests.tests.length + allTests.suites.length - 1}`);

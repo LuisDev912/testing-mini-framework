@@ -22,20 +22,19 @@ export async function runner() {
         console.timeEnd('test-duration');
     };
 
-
-    for (const test of allTests.suites) {
-        // temporary test the suites runner
-        console.time('test-duration'); 
+    for (const suite of allTests.suites) {
+        console.time('suite-duration'); 
+        console.group(`\n \u2192 ${suite.description}`)
         try {
-            await test.fn();
-            console.log(`\u2714 ${test.description}`);
+            await suite.fn();
+            console.log(`\u2714 ${suite.description}`);
             passTests++;
         } catch (e) {
-            console.log(`\u0058 ${test.description}`);
+            console.log(`\u0058 ${suite.description}`);
             console.error(e.message);
             failedTests++;
         };
-        console.timeEnd('test-duration');
+        console.timeEnd('suite-duration');
     };
 
     console.group('\n --- Tests Information ---');

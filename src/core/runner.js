@@ -1,5 +1,25 @@
 import { getRootTests } from "./test.js";
 
+async function runTests(tests, results) {
+    for (const test of tests) {
+        await runSingleTest(test, results);
+    };
+};
+
+async function runSingleTest(test, results) {
+    console.time('test-duration');
+    try {
+        await test.fn();
+        console.log(`\u2714 ${test.description}`);
+        results.passed++;
+    } catch (e) {
+        console.log(`\u0058 ${test.description}`);
+        console.error(e.message);
+        results.failed++;
+    };
+    console.timeEnd('test-duration');
+}
+
 // the runner function must run each of the tests' function using a try/catch statement
 export async function runner() {
     const allTests = getRootTests();

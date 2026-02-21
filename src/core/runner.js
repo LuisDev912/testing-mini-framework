@@ -21,20 +21,20 @@ async function runSingleTest(test, results) {
 };
 
 async function runSuite(suite, results) {
-    if (suite.description !== 'root') {
+    if (suite.description) {
         console.group(`\n \u2192 ${suite.description}`);
-    }
+    };
 
     await runTests(suite.tests, results);
 
     for (const childSuite of suite.suites) {
         await runSuite(childSuite, results);
-    }
+    };
 
     if (suite.description !== 'root') {
         console.groupEnd();
-    }
-}
+    };
+};
 
 export async function runner() {
     const allTests = getRootTests();

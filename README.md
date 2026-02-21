@@ -46,7 +46,6 @@ testing-mini-framework/
 │ ├─ expect/
 │ │ ├─ expect.js # Public expect() API
 │ │ └─ matchers.js # Assertion matchers (toBe, toEqual, etc.)
-│ └─ index.js # Public framework entry point
 ├─ tests/
 │ └─ example.test.js # Example usage of the framework
 ├─ template.js # Reference implementation using node:test and node:assert
@@ -60,11 +59,15 @@ testing-mini-framework/
 ## Basic Usage
 
 ```js
-import { test, expect } from '../src/index.js';
+import { expect } from '../expect/expect.js';
+import { test } from '../core/test.js';
+import { runner } from '../core/runner.js';
 
 test('adds numbers correctly', () => {
     expect(2 + 2).toBe(4);
 });
+
+runner();
 ```
 
 Tests are registered first and executed later by the runner, following a similar mental model to popular testing tools.

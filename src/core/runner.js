@@ -18,6 +18,22 @@ async function runSingleTest(test, results) {
         results.failed++;
     };
     console.timeEnd('test-duration');
+};
+
+async function runSuite(suite, results) {
+    if (suite.description !== 'root') {
+        console.group(`\n→ ${suite.description}`);
+    }
+
+    await runTests(suite.tests, results);
+
+    for (const childSuite of suite.suites) {
+        await runSuite(childSuite, results);
+    }
+
+    if (suite.description !== 'root') {
+        console.groupEnd();
+    }
 }
 
 // the runner function must run each of the tests' function using a try/catch statement
@@ -50,10 +66,10 @@ export async function runner() {
         for (const test of suite.tests) {
             try {
                 await test.fn();
-                console.log(`✔ ${test.description}`);
+                console.log(`\u2714 ${test.description}`);
                 passTests++;
             } catch (e) {
-                console.log(`✖ ${test.description}`);
+                console.log(`\u0058 ${test.description}`);
                 console.error(e.message);
                 failedTests++;
             }

@@ -1,8 +1,14 @@
 import { getRootTests } from "./test.js";
 
-async function runTests(tests, results) {
-    for (const test of tests) {
-        await runSingleTest(test, results);
+async function runTests(tests, results, { parallel }) {
+    if (parallel) {
+        await Promise.all(
+            tests.map(test => runSingleTest(test, results))
+        );
+    } else {
+        for (const test of tests) {
+            await runSingleTest(test, results);
+        };
     };
 };
 
@@ -20,15 +26,15 @@ async function runSingleTest(test, results) {
     console.timeEnd('test-duration');
 };
 
-async function runSuite(suite, results) {
+async function runSuite(suite, results, options) {
     if (suite.description) {
         console.group(`\n \u2192 ${suite.description}`);
     };
 
-    await runTests(suite.tests, results);
+    await runTests(suite.tests, results, options);
 
     for (const childSuite of suite.suites) {
-        await runSuite(childSuite, results);
+        await runSuite(childSuite, results, options);
     };
 
     if (suite.description !== 'root') {

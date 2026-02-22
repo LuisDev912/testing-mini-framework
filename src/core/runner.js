@@ -36,7 +36,7 @@ async function runSuite(suite, results) {
     };
 };
 
-export async function runner() {
+export async function runner({ parallel = false } = {}) {
     const allTests = getRootTests();
 
     const results = {
@@ -45,7 +45,7 @@ export async function runner() {
     };
 
     console.time('testsDuration');
-    await runSuite(allTests, results);
+    await runSuite(allTests, results, { parallel });
 
     console.group('\n --- Tests Information ---');
     console.info(`\u0069 tests: ${results.passed + results.failed}`);
